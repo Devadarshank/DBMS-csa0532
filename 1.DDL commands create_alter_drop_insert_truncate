@@ -1,0 +1,107 @@
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database ss1;
+ERROR 1007 (HY000): Can't create database 'ss1'; database exists
+mysql> create datbase ss2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'datbase ss2' at line 1
+mysql> create databade ss0;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databade ss0' at line 1
+mysql>
+mysql> create database sse1;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use sse1;
+Database changed
+mysql>
+mysql> create table employee (surname varchar(10),age int,,salary int,da int));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'salary int,da int))' at line 1
+mysql> create table employee(surname varchar(10),age int,,salary int,da int));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'salary int,da int))' at line 1
+mysql> create table employee (surname varchar(10),age int,salary int,da int));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> create table employee(surname varchar(10),age int,salary int,da int);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc employee
+    ->
+    ->
+    ->
+    -> desc employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc employee' at line 5
+mysql> desc employee;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| surname | varchar(10) | YES  |     | NULL    |       |
+| age     | int(11)     | YES  |     | NULL    |       |
+| salary  | int(11)     | YES  |     | NULL    |       |
+| da      | int(11)     | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_sse1 |
++----------------+
+| employee       |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> desc manager;
+ERROR 1146 (42S02): Table 'sse1.manager' doesn't exist
+mysql> desc employee;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| surname | varchar(10) | YES  |     | NULL    |       |
+| age     | int(11)     | YES  |     | NULL    |       |
+| salary  | int(11)     | YES  |     | NULL    |       |
+| da      | int(11)     | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> alter table employee add(native int);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee
+    -> desc employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc employee' at line 2
+mysql> desc employee;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| surname | varchar(10) | YES  |     | NULL    |       |
+| age     | int(11)     | YES  |     | NULL    |       |
+| salary  | int(11)     | YES  |     | NULL    |       |
+| da      | int(11)     | YES  |     | NULL    |       |
+| native  | int(11)     | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> drop table employee;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc employee;
+ERROR 1146 (42S02): Table 'sse1.employee' doesn't exist
+mysql> truncate table employee;
+ERROR 1146 (42S02): Table 'sse1.employee' doesn't exist
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> tunket table employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'tunket table employee' at line 1
+mysql> truncate table employee;
+ERROR 1146 (42S02): Table 'sse1.employee' doesn't exist
+mysql> truncate table employee;
