@@ -1,0 +1,112 @@
+mysql> use sse03;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_sse03 |
++-----------------+
+| student         |
+| student04       |
+| student05       |
+| student2        |
++-----------------+
+4 rows in set (0.00 sec)
+
+mysql> select*from student04;
++-----------+---------+-----------+------------+------+------+---------+---------+
+| Regno     | name    | hosteller | dayscholar | dept | year | subject | club    |
++-----------+---------+-----------+------------+------+------+---------+---------+
+| 190001011 | rahul   |         1 |          0 | CSC  | NULL | POM     | dance   |
+| 190001012 | jebi    |         0 |          1 | IT   |    1 | NULL    | codeing |
+| 190001013 | akash   |         0 |          1 | AIML |    3 | NULL    | eco     |
+| 190001014 | darshan |         1 |          0 | CSC  |    2 | NULL    | music   |
++-----------+---------+-----------+------------+------+------+---------+---------+
+4 rows in set (0.00 sec)
+
+mysql> create table Mdept(deptid int(5),depename varchar(20),rollno int(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into Mdept values(01,"AIML",190001011);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Mdept values(02,"CSC",190001012);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> inset into Mdept values(03,"CSC",190001013);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'inset into Mdept values(03,"CSC",190001013)' at line 1
+mysql> insert into Mdept values
+    -> Insert;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Insert' at line 2
+mysql> insert into Mdept values(03,"CSC",190001013);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> update Mdept set deptid=3 where rollno=190001013;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select*from Mdept;
++--------+----------+-----------+
+| deptid | depename | rollno    |
++--------+----------+-----------+
+|      1 | AIML     | 190001011 |
+|      2 | CSC      | 190001012 |
+|      3 | CSC      | 190001013 |
++--------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> update Mdept set depename="ECE" where rollno=190001012;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from Mdept;
++--------+----------+-----------+
+| deptid | depename | rollno    |
++--------+----------+-----------+
+|      1 | AIML     | 190001011 |
+|      2 | ECE      | 190001012 |
+|      3 | CSC      | 190001013 |
++--------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> selct Deptid,depename from Mdept,student04 where student04.Regno=mdept.rollno;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selct Deptid,depename from Mdept,student04 where student04.Regno=mdept.rollno' at line 1
+mysql> select Deptid,depename from Mdept,student04 where student04.Regno=mdept.rollno;
++--------+----------+
+| Deptid | depename |
++--------+----------+
+|      1 | AIML     |
+|      2 | ECE      |
+|      3 | CSC      |
++--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select Deptid,depename,rollno from Mdept,student04 where student04.Regno=mdept.rollno;
++--------+----------+-----------+
+| Deptid | depename | rollno    |
++--------+----------+-----------+
+|      1 | AIML     | 190001011 |
+|      2 | ECE      | 190001012 |
+|      3 | CSC      | 190001013 |
++--------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql>  select name,dept, Deptid,depename,rollno from Mdept,student04 where student04.Regno=Mdept.rollno;
++-------+------+--------+----------+-----------+
+| name  | dept | Deptid | depename | rollno    |
++-------+------+--------+----------+-----------+
+| rahul | CSC  |      1 | AIML     | 190001011 |
+| jebi  | IT   |      2 | ECE      | 190001012 |
+| akash | AIML |      3 | CSC      | 190001013 |
++-------+------+--------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select Rollno,Deptname,Name,Address from dept left outer join student04 on Mdept.rollno=student04.Regno;
+ERROR 1146 (42S02): Table 'sse03.dept' doesn't exist
+mysql> select rollno,depename,name,club from Mdept left outer join student04 on Mdept.rollno=student04.Regno;
++-----------+----------+-------+---------+
+| rollno    | depename | name  | club    |
++-----------+----------+-------+---------+
+| 190001011 | AIML     | rahul | dance   |
+| 190001012 | ECE      | jebi  | codeing |
+| 190001013 | CSC      | akash | eco     |
++-----------+----------+-------+---------+
+3 rows in set (0.00 sec)
