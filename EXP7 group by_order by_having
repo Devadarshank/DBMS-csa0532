@@ -1,0 +1,46 @@
+mysql> use sse03;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_sse03 |
++-----------------+
+| student         |
+| student04       |
+| student2        |
++-----------------+
+3 rows in set (0.00 sec)
+
+mysql> select*from student04;
++-----------+---------+-----------+------------+------+------+---------+---------+
+| Regno     | name    | hosteller | dayscholar | dept | year | subject | club    |
++-----------+---------+-----------+------------+------+------+---------+---------+
+| 190001011 | rahul   |         1 |          0 | CSC  | NULL | POM     | dance   |
+| 190001012 | jebi    |         0 |          1 | IT   |    1 | NULL    | codeing |
+| 190001013 | akash   |         0 |          1 | AIML |    3 | NULL    | eco     |
+| 190001014 | darshan |         1 |          0 | CSC  |    2 | NULL    | music   |
++-----------+---------+-----------+------------+------+------+---------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select*from student order by name;
+Empty set (0.01 sec)
+
+mysql> select*from student04 order by name;
++-----------+---------+-----------+------------+------+------+---------+---------+
+| Regno     | name    | hosteller | dayscholar | dept | year | subject | club    |
++-----------+---------+-----------+------------+------+------+---------+---------+
+| 190001013 | akash   |         0 |          1 | AIML |    3 | NULL    | eco     |
+| 190001014 | darshan |         1 |          0 | CSC  |    2 | NULL    | music   |
+| 190001012 | jebi    |         0 |          1 | IT   |    1 | NULL    | codeing |
+| 190001011 | rahul   |         1 |          0 | CSC  | NULL | POM     | dance   |
++-----------+---------+-----------+------------+------+------+---------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select*from student04 group by dept;
++-----------+-------+-----------+------------+------+------+---------+---------+
+| Regno     | name  | hosteller | dayscholar | dept | year | subject | club    |
++-----------+-------+-----------+------------+------+------+---------+---------+
+| 190001013 | akash |         0 |          1 | AIML |    3 | NULL    | eco     |
+| 190001011 | rahul |         1 |          0 | CSC  | NULL | POM     | dance   |
+| 190001012 | jebi  |         0 |          1 | IT   |    1 | NULL    | codeing |
++-----------+-------+-----------+------------+------+------+---------+---------+
+3 rows in set (0.00 sec)
