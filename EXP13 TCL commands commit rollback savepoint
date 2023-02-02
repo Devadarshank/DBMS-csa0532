@@ -1,0 +1,127 @@
+mysql> use sse03;
+Database changed
+mysql> create table thewitcher(sno int(5),Names varchar(39
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table thewitcher(sno int(5),Names varchar(30),purpose varchar(15));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into thewitcher values(1,"geralt","hero");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into thewitcher values(2,"yennefer","heroine");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into thewitcher values(3,"ciri","destine of hero");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into thewitcher values(4,"fringulaa","negative role");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from thewitcher;
++------+-----------+-----------------+
+| sno  | Names     | purpose         |
++------+-----------+-----------------+
+|    1 | geralt    | hero            |
+|    2 | yennefer  | heroine         |
+|    3 | ciri      | destine of hero |
+|    4 | fringulaa | negative role   |
++------+-----------+-----------------+
+4 rows in set (0.00 sec)
+
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into movies values(5,"vesamir","geralt teacher");
+ERROR 1146 (42S02): Table 'sse03.movies' doesn't exist
+mysql> insert into thewitcher vlaues(5,"vasamir","grealt teacher");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vlaues(5,"vasamir","grealt teacher")' at line 1
+mysql> insert into thewitcher values(5,"vasamir","grealt teacher");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from thewitcher:
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':' at line 1
+mysql> select*from thewitcher;
++------+-----------+-----------------+
+| sno  | Names     | purpose         |
++------+-----------+-----------------+
+|    1 | geralt    | hero            |
+|    2 | yennefer  | heroine         |
+|    3 | ciri      | destine of hero |
+|    4 | fringulaa | negative role   |
+|    5 | vasamir   | grealt teacher  |
++------+-----------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> savepoint ins;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> update thewitcher set purpose="villan" where Names=fringulaa;
+ERROR 1054 (42S22): Unknown column 'fringulaa' in 'where clause'
+mysql> update thewitcher set purpose="villan" where sno=4;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from thewitcher;
++------+-----------+-----------------+
+| sno  | Names     | purpose         |
++------+-----------+-----------------+
+|    1 | geralt    | hero            |
+|    2 | yennefer  | heroine         |
+|    3 | ciri      | destine of hero |
+|    4 | fringulaa | villan          |
+|    5 | vasamir   | grealt teacher  |
++------+-----------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> savepoint upd;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from the witcher where sno=4;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'witcher where sno=4' at line 1
+mysql> delete from thewitcher where sno=4;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from thewitcher;
++------+----------+-----------------+
+| sno  | Names    | purpose         |
++------+----------+-----------------+
+|    1 | geralt   | hero            |
+|    2 | yennefer | heroine         |
+|    3 | ciri     | destine of hero |
+|    5 | vasamir  | grealt teacher  |
++------+----------+-----------------+
+4 rows in set (0.00 sec)
+
+mysql> savepoint del;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> rollback to upd;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select*from thewitcher;
++------+-----------+-----------------+
+| sno  | Names     | purpose         |
++------+-----------+-----------------+
+|    1 | geralt    | hero            |
+|    2 | yennefer  | heroine         |
+|    3 | ciri      | destine of hero |
+|    4 | fringulaa | villan          |
+|    5 | vasamir   | grealt teacher  |
++------+-----------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> rollback to ini;
+ERROR 1305 (42000): SAVEPOINT ini does not exist
+mysql> select*from thewitcher;
++------+-----------+-----------------+
+| sno  | Names     | purpose         |
++------+-----------+-----------------+
+|    1 | geralt    | hero            |
+|    2 | yennefer  | heroine         |
+|    3 | ciri      | destine of hero |
+|    4 | fringulaa | villan          |
+|    5 | vasamir   | grealt teacher  |
++------+-----------+-----------------+
+5 rows in set (0.00 sec)
