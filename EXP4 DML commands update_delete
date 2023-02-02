@@ -1,0 +1,43 @@
+mysql> use sse03;
+Database changed
+mysql> select*from student04;
++-----------+-------+-----------+------------+------+
+| Regno     | name  | hosteller | dayscholar | dept |
++-----------+-------+-----------+------------+------+
+| 190001011 | rahul |         1 |          0 | CSC  |
+| 190001012 | jebi  |         0 |          1 | IT   |
+| 190001013 | akash |         0 |          1 | AIML |
+| 190001014 | sam   |         1 |          0 | CSC  |
+| 190001015 | ram   |         1 |          0 | ECE  |
++-----------+-------+-----------+------------+------+
+5 rows in set (0.00 sec)
+
+mysql> update student04 set name="darshan" where Regno=190001014;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from student04;
++-----------+---------+-----------+------------+------+
+| Regno     | name    | hosteller | dayscholar | dept |
++-----------+---------+-----------+------------+------+
+| 190001011 | rahul   |         1 |          0 | CSC  |
+| 190001012 | jebi    |         0 |          1 | IT   |
+| 190001013 | akash   |         0 |          1 | AIML |
+| 190001014 | darshan |         1 |          0 | CSC  |
+| 190001015 | ram     |         1 |          0 | ECE  |
++-----------+---------+-----------+------------+------+
+5 rows in set (0.00 sec)
+
+mysql> delete from student04 where dept="ECE";
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from student04;
++-----------+---------+-----------+------------+------+
+| Regno     | name    | hosteller | dayscholar | dept |
++-----------+---------+-----------+------------+------+
+| 190001011 | rahul   |         1 |          0 | CSC  |
+| 190001012 | jebi    |         0 |          1 | IT   |
+| 190001013 | akash   |         0 |          1 | AIML |
+| 190001014 | darshan |         1 |          0 | CSC  |
++-----------+---------+-----------+------------+------+
+4 rows in set (0.00 sec)
