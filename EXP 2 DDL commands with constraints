@@ -1,0 +1,214 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| simats1            |
+| ss1                |
+| sse                |
+| sse03              |
+| sse1               |
+| sse10              |
+| test               |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use sse03;
+Database changed
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(10) | YES  |     | NULL    |       |
+| rollno   | int(11)     | YES  |     | NULL    |       |
+| mobileno | int(11)     | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| dept     | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_sse03 |
++-----------------+
+| student         |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> create table student2(name varchar(10),rollno int,mobileno int,gender char(1),dept varchar(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc student2;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(10) | YES  |     | NULL    |       |
+| rollno   | int(11)     | YES  |     | NULL    |       |
+| mobileno | int(11)     | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| dept     | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_sse03 |
++-----------------+
+| student         |
+| student2        |
++-----------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table student add (DOB varchar(10));
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table student2 add (DOB varchar(10));
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(10) | YES  |     | NULL    |       |
+| rollno   | int(11)     | YES  |     | NULL    |       |
+| mobileno | int(11)     | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| dept     | varchar(10) | YES  |     | NULL    |       |
+| DOB      | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_sse03 |
++-----------------+
+| student         |
+| student2        |
++-----------------+
+2 rows in set (0.00 sec)
+
+mysql> desc student2;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(10) | YES  |     | NULL    |       |
+| rollno   | int(11)     | YES  |     | NULL    |       |
+| mobileno | int(11)     | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| dept     | varchar(10) | YES  |     | NULL    |       |
+| DOB      | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_sse03 |
++-----------------+
+| student         |
+| student2        |
++-----------------+
+2 rows in set (0.00 sec)
+
+mysql> drop tbale student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'tbale student' at line 1
+mysql> drop table student;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> drop table student2;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> use sse03;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> desc student;
+ERROR 1146 (42S02): Table 'sse03.student' doesn't exist
+mysql>  create table student(name varchar(10),rollno int,mobileno int,gender char(1),dept varchar(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>  create table student2(name varchar(10),rollno int,mobileno int,gender char(1),dept varchar(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(10) | YES  |     | NULL    |       |
+| rollno   | int(11)     | YES  |     | NULL    |       |
+| mobileno | int(11)     | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| dept     | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> desc student2;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(10) | YES  |     | NULL    |       |
+| rollno   | int(11)     | YES  |     | NULL    |       |
+| mobileno | int(11)     | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| dept     | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> alter table student add primary key(rollno)
+    -> alter table student add primary key(rollno);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'alter table student add primary key(rollno)' at line 2
+mysql> alter table student add primary key(rollno);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(10) | YES  |     | NULL    |       |
+| rollno   | int(11)     | NO   | PRI | 0       |       |
+| mobileno | int(11)     | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| dept     | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> alter table student2 add foreign key(rollno) references student(rollno);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student2;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(10) | YES  |     | NULL    |       |
+| rollno   | int(11)     | YES  | MUL | NULL    |       |
+| mobileno | int(11)     | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| dept     | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> alter table student add unique(rollno);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(10) | YES  |     | NULL    |       |
+| rollno   | int(11)     | NO   | PRI | 0       |       |
+| mobileno | int(11)     | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| dept     | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student add check(age>=15);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
