@@ -1,0 +1,86 @@
+mysql> use sse03;
+Database changed
+mysql> show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> show tables;
++-----------------+
+| Tables_in_sse03 |
++-----------------+
+| mdept           |
+| student         |
+| student04       |
+| student05       |
+| student2        |
++-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select*from student04;
++-----------+---------+-----------+------------+------+------+---------+---------+
+| Regno     | name    | hosteller | dayscholar | dept | year | subject | club    |
++-----------+---------+-----------+------------+------+------+---------+---------+
+| 190001011 | rahul   |         1 |          0 | CSC  | NULL | POM     | dance   |
+| 190001012 | jebi    |         0 |          1 | IT   |    1 | NULL    | codeing |
+| 190001013 | akash   |         0 |          1 | AIML |    3 | NULL    | eco     |
+| 190001014 | darshan |         1 |          0 | CSC  |    2 | NULL    | music   |
++-----------+---------+-----------+------------+------+------+---------+---------+
+4 rows in set (0.00 sec)
+
+mysql> create view dept
+    -> create;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'create' at line 2
+mysql> create view dept_view as select club,dept from student04;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select*from dept_view;
++---------+------+
+| club    | dept |
++---------+------+
+| dance   | CSC  |
+| codeing | IT   |
+| eco     | AIML |
+| music   | CSC  |
++---------+------+
+4 rows in set (0.01 sec)
+
+mysql> create index club on student04(club);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show index from student04;
++-----------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table     | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++-----------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| student04 |          1 | club     |            1 | club        | A         |           4 |     NULL | NULL   | YES  | BTREE      |         |               |
++-----------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+1 row in set (0.00 sec)
+
+mysql> create table per(pid int NOT NULL AUTO_INCREMENT,name varchar(50),age int(3),PRIMARY KEY(pid));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc per;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| pid   | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | YES  |     | NULL    |                |
+| age   | int(3)      | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.01 sec)
+
+mysql> alter table per AUTO_INCREMENT=100;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into per
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into per(name,age) values ("darshan",24);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from per;
++-----+---------+------+
+| pid | name    | age  |
++-----+---------+------+
+| 100 | darshan |   24 |
++-----+---------+------+
+1 row in set (0.00 sec)
