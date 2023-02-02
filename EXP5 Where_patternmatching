@@ -1,0 +1,81 @@
+
+mysql> use sse03;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_sse03 |
++-----------------+
+| student         |
+| student04       |
+| student2        |
++-----------------+
+3 rows in set (0.00 sec)
+
+mysql> select*from student04;
++-----------+---------+-----------+------------+------+
+| Regno     | name    | hosteller | dayscholar | dept |
++-----------+---------+-----------+------------+------+
+| 190001011 | rahul   |         1 |          0 | CSC  |
+| 190001012 | jebi    |         0 |          1 | IT   |
+| 190001013 | akash   |         0 |          1 | AIML |
+| 190001014 | darshan |         1 |          0 | CSC  |
++-----------+---------+-----------+------------+------+
+4 rows in set (0.00 sec)
+
+mysql> select*from student04 where Regno=190001011;
++-----------+-------+-----------+------------+------+
+| Regno     | name  | hosteller | dayscholar | dept |
++-----------+-------+-----------+------------+------+
+| 190001011 | rahul |         1 |          0 | CSC  |
++-----------+-------+-----------+------------+------+
+1 row in set (0.00 sec)
+
+mysql> select*from student04 where name="jebi";
++-----------+------+-----------+------------+------+
+| Regno     | name | hosteller | dayscholar | dept |
++-----------+------+-----------+------------+------+
+| 190001012 | jebi |         0 |          1 | IT   |
++-----------+------+-----------+------------+------+
+1 row in set (0.00 sec)
+
+mysql> select*from student04 where hosteller=1;
++-----------+---------+-----------+------------+------+
+| Regno     | name    | hosteller | dayscholar | dept |
++-----------+---------+-----------+------------+------+
+| 190001011 | rahul   |         1 |          0 | CSC  |
+| 190001014 | darshan |         1 |          0 | CSC  |
++-----------+---------+-----------+------------+------+
+2 rows in set (0.00 sec)
+
+mysql> alter table student04 add year int(4);
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> update student04 set year=1 where dept="IT";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student04 set year=2 where name="darshan";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student04 set year=3 where Regno=190001013;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from student04;
++-----------+---------+-----------+------------+------+------+
+| Regno     | name    | hosteller | dayscholar | dept | year |
++-----------+---------+-----------+------------+------+------+
+| 190001011 | rahul   |         1 |          0 | CSC  | NULL |
+| 190001012 | jebi    |         0 |          1 | IT   |    1 |
+| 190001013 | akash   |         0 |          1 | AIML |    3 |
+| 190001014 | darshan |         1 |          0 | CSC  |    2 |
++-----------+---------+-----------+------------+------+------+
+4 rows in set (0.00 sec)
+
+mysql> select*from student04 where Regno like '%S%';
+Empty set (0.01 sec)
+
+mysql> select*from student04 where name  like 'G%';
+Empty set (0.00 sec)
