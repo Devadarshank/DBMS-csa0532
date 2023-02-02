@@ -1,0 +1,59 @@
+
+mysql> use sse03;
+Database changed
+mysql> create table student(Regno int(10),name varchar(20),hosteller int(10),dayscholar int(10),dept varchar(5));
+ERROR 1050 (42S01): Table 'student' already exists
+mysql> create table student04(Regno int(10),name varchar(20),hosteller int(10),dayscholar int(10),dept varchar(5));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into student04 values(190001011,"rahul",1,0,"CSC");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student04 values(190001012,"jebi",0,1,"IT");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student04 values(190001013,"akash",0,1,"AIML");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student04 values(190001014,"sam",1,0,"CSC");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student04 values(190001015,"ram",1,0,"ECE");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from student04;
++-----------+-------+-----------+------------+------+
+| Regno     | name  | hosteller | dayscholar | dept |
++-----------+-------+-----------+------------+------+
+| 190001011 | rahul |         1 |          0 | CSC  |
+| 190001012 | jebi  |         0 |          1 | IT   |
+| 190001013 | akash |         0 |          1 | AIML |
+| 190001014 | sam   |         1 |          0 | CSC  |
+| 190001015 | ram   |         1 |          0 | ECE  |
++-----------+-------+-----------+------------+------+
+5 rows in set (0.00 sec)
+
+mysql> select dept from student04;
++------+
+| dept |
++------+
+| CSC  |
+| IT   |
+| AIML |
+| CSC  |
+| ECE  |
++------+
+5 rows in set (0.00 sec)
+
+mysql> select*from student04 where regno=190001013
+    ->
+    -> select*from student04 where regno=190001013;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select*from student04 where regno=190001013' at line 3
+mysql>
+mysql> select*from student04 where regno=190001013;
++-----------+-------+-----------+------------+------+
+| Regno     | name  | hosteller | dayscholar | dept |
++-----------+-------+-----------+------------+------+
+| 190001013 | akash |         0 |          1 | AIML |
++-----------+-------+-----------+------------+------+
+1 row in set (0.00 sec)
