@@ -1,0 +1,44 @@
+mysql> use sse03;
+Database changed
+mysql> select*from student04;
++-----------+---------+-----------+------------+------+------+---------+---------+
+| Regno     | name    | hosteller | dayscholar | dept | year | subject | club    |
++-----------+---------+-----------+------------+------+------+---------+---------+
+| 190001011 | rahul   |         1 |          0 | CSC  | NULL | POM     | dance   |
+| 190001012 | jebi    |         0 |          1 | IT   |    1 | NULL    | codeing |
+| 190001013 | akash   |         0 |          1 | AIML |    3 | NULL    | eco     |
+| 190001014 | darshan |         1 |          0 | CSC  |    2 | NULL    | music   |
++-----------+---------+-----------+------------+------+------+---------+---------+
+4 rows in set (0.00 sec)
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE student04_info()
+    -> BEGIN
+    -> select*from student04;
+    -> END; //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CALL student04_info()
+    -> //
++-----------+---------+-----------+------------+------+------+---------+---------+
+| Regno     | name    | hosteller | dayscholar | dept | year | subject | club    |
++-----------+---------+-----------+------------+------+------+---------+---------+
+| 190001011 | rahul   |         1 |          0 | CSC  | NULL | POM     | dance   |
+| 190001012 | jebi    |         0 |          1 | IT   |    1 | NULL    | codeing |
+| 190001013 | akash   |         0 |          1 | AIML |    3 | NULL    | eco     |
+| 190001014 | darshan |         1 |          0 | CSC  |    2 | NULL    | music   |
++-----------+---------+-----------+------------+------+------+---------+---------+
+4 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> CREATE PROCEDURE while_loop()
+    -> BEGIN
+    ->  DECLARE num INT default 1;
+    -> DECLARE res Varchar(50) default '';
+    ->  WHILE num < 78125 DO
+    ->  SET res = CONCAT(res,num,',');
+    -> SET num = num*5:
+    ->  END While;
+    -> SELECT res;
+    -> END //
