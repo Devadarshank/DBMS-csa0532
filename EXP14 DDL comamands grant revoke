@@ -1,0 +1,89 @@
+mysql> use sse03;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_sse03 |
++-----------------+
+| dept_view       |
+| mdept           |
+| per             |
+| student         |
+| student04       |
+| student05       |
+| student2        |
+| thewitcher      |
+| witcher         |
++-----------------+
+9 rows in set (0.00 sec)
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(10) | YES  |     | NULL    |       |
+| rollno   | int(11)     | NO   | PRI | 0       |       |
+| mobileno | int(11)     | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| dept     | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> create user darshan;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> grant all on the student to darshan;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student to darshan' at line 1
+mysql> grant all on student to darshan;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for darshan;
++------------------------------------------------------------+
+| Grants for darshan@%                                       |
++------------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'darshan'@'%'                        |
+| GRANT ALL PRIVILEGES ON `sse03`.`student` TO 'darshan'@'%' |
++------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> grant select,update on persons to darshan;
+ERROR 1146 (42S02): Table 'sse03.persons' doesn't exist
+mysql> grant select, update on student04 to darshan;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> revoke all on student from darshan;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for darshan;
++--------------------------------------------------------------+
+| Grants for darshan@%                                         |
++--------------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'darshan'@'%'                          |
+| GRANT SELECT, UPDATE ON `sse03`.`student04` TO 'darshan'@'%' |
++--------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> grant select, update on the student04 to darshan;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student04 to darshan' at line 1
+mysql> grant select, update on student04 to darshan;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for darshan;
++--------------------------------------------------------------+
+| Grants for darshan@%                                         |
++--------------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'darshan'@'%'                          |
+| GRANT SELECT, UPDATE ON `sse03`.`student04` TO 'darshan'@'%' |
++--------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> revoke update on student04 from darshan;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for darshan;
++------------------------------------------------------+
+| Grants for darshan@%                                 |
++------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'darshan'@'%'                  |
+| GRANT SELECT ON `sse03`.`student04` TO 'darshan'@'%' |
++------------------------------------------------------+
+2 rows in set (0.00 sec)
